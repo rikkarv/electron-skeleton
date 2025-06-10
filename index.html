@@ -8,6 +8,14 @@
     </head>
     <body>
         <!---->
-        <script></script>
+        <script>
+            const { ipcRenderer } = require('electron');
+            ipcRenderer.on('menu-say-hello', () => {
+                alert("hello");
+            });
+            ipcRenderer.on('menu-say-goodby', () => {
+                alert("goodbye");
+            });
+        </script>
     </body>
 </html>
