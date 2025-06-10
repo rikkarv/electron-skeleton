@@ -4,10 +4,75 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title></title>
-        <style></style>
+        <style>
+            * {
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            #titlebar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #2f3241;
+                color: white;
+                padding: 0 10px;
+                height: 32px;
+                -webkit-user-select: none;
+                -webkit-app-region: drag;
+            }
+
+            #titlebar .window-controls {
+                display: flex;
+                gap: 8px;
+                -webkit-app-region: no-drag;
+            }
+
+            #titlebar .window-controls button {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 14px;
+                width: 32px;
+                height: 24px;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
-        <!---->
-        <script></script>
+        <div id="titlebar">
+            <div class="title">My App</div>
+            <div class="window-controls">
+                <button id="minimize">_</button>
+                <button id="maximize">☐</button>
+                <button id="close">✖</button>
+            </div>
+        </div>
+        
+        <script>
+            // Required for Node integration to be enabled
+            window.nodeRequire = require;
+        </script>
+
+        <script>
+            const { ipcRenderer } = window.nodeRequire('electron');
+            document.getElementById('minimize').addEventListener('click', () => {
+                ipcRenderer.send('window-control', 'minimize');
+            });
+            document.getElementById('maximize').addEventListener('click', () => {
+                ipcRenderer.send('window-control', 'maximize');
+            });
+            document.getElementById('close').addEventListener('click', () => {
+                ipcRenderer.send('window-control', 'close');
+            });
+        </script>
     </body>
 </html>
