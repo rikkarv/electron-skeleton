@@ -57,12 +57,7 @@
         </div>
 
         <script>
-            // Required for Node integration to be enabled
-            window.nodeRequire = require;
-        </script>
-
-        <script>
-            const { ipcRenderer } = window.nodeRequire('electron');
+            const { ipcRenderer } = require('electron');
             window.FontAwesomeConfig = { autoReplaceSvg: false };
             require('@fortawesome/fontawesome-free/js/all');
             document.getElementById('minimize').addEventListener('click', () => {
