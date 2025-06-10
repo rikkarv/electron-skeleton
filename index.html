@@ -7,13 +7,12 @@
         <style></style>
     </head>
     <body>
-        <!---->
         <script>
             const { ipcRenderer } = require('electron');
             ipcRenderer.on('menu-say-hello', () => {
                 alert("hello");
             });
-            ipcRenderer.on('menu-say-goodby', () => {
+            ipcRenderer.on('menu-say-goodbye', () => {
                 alert("goodbye");
             });
         </script>
